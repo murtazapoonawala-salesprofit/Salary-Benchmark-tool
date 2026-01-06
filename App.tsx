@@ -18,11 +18,22 @@ const App: React.FC = () => {
 
   // --- Handlers ---
   const handleNumberChange = (field: keyof Inputs, value: string) => {
+    // Allow empty string to clear the field
+    if (value === '') {
+      setInputs(prev => ({
+        ...prev,
+        [field]: ''
+      }));
+      return;
+    }
+
     const numValue = parseFloat(value);
-    setInputs(prev => ({
-      ...prev,
-      [field]: isNaN(numValue) ? 0 : numValue
-    }));
+    if (!isNaN(numValue)) {
+      setInputs(prev => ({
+        ...prev,
+        [field]: numValue
+      }));
+    }
   };
 
   const handleEnumChange = (field: keyof Inputs, value: string) => {
@@ -34,9 +45,14 @@ const App: React.FC = () => {
 
   // --- Logic ---
   const results: CalculationResult = useMemo(() => {
+    // Safe values for calculation (treat empty string as 0)
+    const safeFixedSalary = inputs.fixedSalaryLacs === '' ? 0 : inputs.fixedSalaryLacs;
+    const safeVariablePct = inputs.variablePercentage === '' ? 0 : inputs.variablePercentage;
+    const safeYearsExp = inputs.yearsExperience === '' ? 0 : inputs.yearsExperience;
+
     // 1. Total CTC
     // variablePercentage is now entered as a whole number (e.g. 30), so divide by 100
-    const totalCtc = inputs.fixedSalaryLacs + (inputs.fixedSalaryLacs * (inputs.variablePercentage / 100));
+    const totalCtc = safeFixedSalary + (safeFixedSalary * (safeVariablePct / 100));
 
     // 2. Deal Size Factor
     // New Logic: Factor is 1 only for "Less than 10 Lakhs". 
@@ -69,7 +85,7 @@ const App: React.FC = () => {
     const xValue = 2 + (0.1 * zValue);
 
     // 7. Benchmark Salary
-    const benchmarkSalary = inputs.yearsExperience * xValue;
+    const benchmarkSalary = safeYearsExp * xValue;
 
     // Final Output
     const isUnderpaid = totalCtc < benchmarkSalary;
@@ -262,7 +278,7 @@ const App: React.FC = () => {
                         <span className="text-sm font-medium text-blue-600">Lakhs</span>
                       </div>
                       <p className="text-xs text-blue-500 mt-2">
-                         Based on {inputs.yearsExperience} years exp. & performance factors
+                         Based on {inputs.yearsExperience === '' ? 0 : inputs.yearsExperience} years exp. & performance factors
                       </p>
                     </div>
                   </div>

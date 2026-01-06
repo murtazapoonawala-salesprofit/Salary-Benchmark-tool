@@ -20,9 +20,9 @@ export enum Achievement {
 }
 
 export interface Inputs {
-  yearsExperience: number;
-  fixedSalaryLacs: number;
-  variablePercentage: number; // stored as percentage value e.g., 30 for 30%
+  yearsExperience: number | '';
+  fixedSalaryLacs: number | '';
+  variablePercentage: number | ''; // stored as percentage value e.g., 30 for 30%
   dealSize: DealSize;
   region: Region;
   achievement: Achievement;
