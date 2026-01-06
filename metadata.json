@@ -1,0 +1,5 @@
+{
+  "name": "B2B Sales Salary Benchmarker",
+  "description": "A precise logic-based salary benchmarking tool for B2B Sales roles comparing Total CTC against market benchmarks based on experience, deal size, region, and achievement.",
+  "requestFramePermissions": []
+}
