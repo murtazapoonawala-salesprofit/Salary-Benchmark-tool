@@ -6,7 +6,7 @@ import {
 } from './constants';
 import { InputGroup } from './components/InputGroup';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { AlertCircle, CheckCircle, TrendingUp, DollarSign, Briefcase, Globe, Target, User, ChevronRight, ArrowLeft } from 'lucide-react';
+import { AlertCircle, CheckCircle, TrendingUp, DollarSign, Briefcase, Globe, Target, User, ChevronRight, ArrowLeft, Info } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- State ---
@@ -107,8 +107,8 @@ const App: React.FC = () => {
     // 5. Z Value
     const zValue = dealFactor + regionFactor + (0.01 * achievementFactor);
 
-    // 6. X Value
-    const xValue = 2 + (0.1 * zValue);
+    // 6. X Value - Updated Formula: 2.6 + (0.1 * Z)
+    const xValue = 2.6 + (0.1 * zValue);
 
     // 7. Benchmark Salary
     const benchmarkSalary = safeYearsExp * xValue;
@@ -166,7 +166,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-12 font-sans">
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        {/* Header - Always visible or conditional? Keeping it helps context. */}
+        {/* Header */}
         <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-slate-900">Sales Compensation Benchmark</h1>
             <p className="text-slate-600 mt-2 text-sm">Tech Sales Professionals</p>
@@ -388,7 +388,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           /* --- STEP 2: RESULTS DASHBOARD --- */
-          <div className="space-y-6 animate-in slide-in-from-right duration-500">
+          <div className="space-y-6 animate-in slide-in-from-right duration-500 pb-12">
              <button 
               onClick={handleBackClick}
               className="flex items-center gap-2 text-slate-500 hover:text-slate-800 font-medium text-sm transition-colors"
@@ -474,39 +474,26 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* Debug / Breakdown Card */}
-              <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                 <div className="flex items-center gap-2 mb-4">
-                  <DollarSign className="text-slate-400" size={18} />
-                  <h4 className="text-sm font-semibold text-slate-700 uppercase tracking-wide">Calculation Breakdown</h4>
-                 </div>
-                 
-                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center divide-x divide-slate-100">
-                    <div>
-                      <span className="block text-xs text-slate-500 mb-1">Deal Factor</span>
-                      <span className="font-mono font-medium text-slate-700">{results.dealFactor}</span>
+              {/* IMPORTANT NOTE BOX */}
+              <div className="bg-slate-100 rounded-xl border border-slate-200 p-6 shadow-sm">
+                <div className="flex gap-4">
+                  <div className="shrink-0">
+                    <div className="bg-slate-200 p-2 rounded-full">
+                      <Info className="text-slate-600" size={20} />
                     </div>
-                    <div>
-                      <span className="block text-xs text-slate-500 mb-1">Region Factor</span>
-                      <span className="font-mono font-medium text-slate-700">{results.regionFactor}</span>
-                    </div>
-                    <div>
-                      <span className="block text-xs text-slate-500 mb-1">Achiev. Factor</span>
-                      <span className="font-mono font-medium text-slate-700">{results.achievementFactor}</span>
-                    </div>
-                     <div>
-                      <span className="block text-xs text-slate-500 mb-1">Z Value</span>
-                      <span className="font-mono font-bold text-blue-600">{results.zValue.toFixed(2)}</span>
-                    </div>
-                    <div>
-                      <span className="block text-xs text-slate-500 mb-1">X Value</span>
-                      <span className="font-mono font-bold text-purple-600">{results.xValue.toFixed(2)}</span>
-                    </div>
-                 </div>
-                 <div className="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
-                    <p>Formula: Benchmark = Years Exp × X</p>
-                    <p>Where X = 2 + (0.1 × Z)</p>
-                 </div>
+                  </div>
+                  <div className="space-y-4">
+                    <p className="text-slate-700 text-sm leading-relaxed">
+                      This benchmark reflects current market trends but may vary based on domain, company context, consultative sales capability, and demand.
+                    </p>
+                    <p className="text-slate-700 text-sm leading-relaxed">
+                      Final compensation is influenced by role complexity, target ownership, and performance expectations.
+                    </p>
+                    <p className="text-blue-700 font-semibold text-sm leading-relaxed">
+                      Speak with our recruitment consultant for a tailored compensation assessment
+                    </p>
+                  </div>
+                </div>
               </div>
           </div>
         )}
