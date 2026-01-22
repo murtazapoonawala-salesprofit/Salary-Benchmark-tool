@@ -107,7 +107,7 @@ const App: React.FC = () => {
     // 5. Z Value
     const zValue = dealFactor + regionFactor + (0.01 * achievementFactor);
 
-    // 6. X Value - Updated Formula: 2.6 + (0.1 * Z)
+    // 6. X Value - Formula updated to: 2.6 + (0.1 * Z)
     const xValue = 2.6 + (0.1 * zValue);
 
     // 7. Benchmark Salary
@@ -317,7 +317,7 @@ const App: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Fixed Salary Field - Now First */}
+                  {/* Fixed Salary Field */}
                   <InputGroup label="Fixed Salary (Lakhs PA)" id="fixed">
                     <div className="relative">
                       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -335,7 +335,7 @@ const App: React.FC = () => {
                     </div>
                   </InputGroup>
 
-                 {/* Variable Pay Field - Now Second */}
+                 {/* Variable Pay Field */}
                  <InputGroup label="Variable Pay as % of Fixed (OTE Variable)" id="variable" helperText="e.g. 30 for 30%">
                     <input
                       type="number"
