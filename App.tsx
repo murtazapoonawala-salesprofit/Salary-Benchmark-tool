@@ -6,7 +6,7 @@ import {
 } from './constants';
 import { InputGroup } from './components/InputGroup';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { AlertCircle, CheckCircle, TrendingUp, DollarSign, Briefcase, Globe, Target, User, ChevronRight, ArrowLeft, Info } from 'lucide-react';
+import { AlertCircle, CheckCircle, DollarSign, Briefcase, Globe, Target, User, ChevronRight, ArrowLeft, Info } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- State ---
@@ -149,7 +149,7 @@ const App: React.FC = () => {
         <div className="text-center space-y-6 animate-in fade-in duration-700 max-w-md w-full">
           <div className="relative mx-auto w-20 h-20">
             <div className="absolute inset-0 border-4 border-slate-200 rounded-full"></div>
-            <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+            <div className="absolute inset-0 border-4 border-[#32AF6F] rounded-full border-t-transparent animate-spin"></div>
           </div>
           <div className="space-y-3">
             <h2 className="text-2xl font-bold text-slate-800">Calculating Benchmark...</h2>
@@ -379,7 +379,7 @@ const App: React.FC = () => {
             <div className="pt-4 pb-8">
               <button
                 onClick={handleBenchmarkClick}
-                className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-4 px-6 rounded-xl font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-transform"
+                className="w-full flex items-center justify-center gap-2 bg-[#32AF6F] text-white py-4 px-6 rounded-xl font-bold text-lg hover:opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Get Benchmark Result <ChevronRight size={20} />
               </button>
@@ -474,26 +474,29 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* IMPORTANT NOTE BOX */}
-              <div className="bg-slate-100 rounded-xl border border-slate-200 p-6 shadow-sm">
-                <div className="flex gap-4">
-                  <div className="shrink-0">
-                    <div className="bg-slate-200 p-2 rounded-full">
-                      <Info className="text-slate-600" size={20} />
-                    </div>
+              {/* IMPORTANT NOTE BOX + CTA */}
+              <div className="bg-white rounded-xl border border-slate-200 p-8 shadow-sm space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-slate-800 font-semibold">
+                     <Info className="text-slate-400" size={20} />
+                     <h4>Important Context</h4>
                   </div>
-                  <div className="space-y-4">
-                    <p className="text-slate-700 text-sm leading-relaxed">
-                      This benchmark reflects current market trends but may vary based on domain, company context, consultative sales capability, and demand.
-                    </p>
-                    <p className="text-slate-700 text-sm leading-relaxed">
-                      Final compensation is influenced by role complexity, target ownership, and performance expectations.
-                    </p>
-                    <p className="text-blue-700 font-semibold text-sm leading-relaxed">
-                      Speak with our recruitment consultant for a tailored compensation assessment
-                    </p>
-                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    This benchmark reflects current market trends but may vary based on domain, company context, consultative sales capability, and demand.
+                  </p>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    Final compensation is influenced by role complexity, target ownership, and performance expectations.
+                  </p>
                 </div>
+                
+                <a 
+                  href="https://salesprofit.in/tools/sales-compensation-benchmark/#contact" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block w-full text-center bg-[#32AF6F] text-white py-4 px-6 rounded-xl font-bold text-lg hover:opacity-95 transition-all shadow-md hover:shadow-lg transform active:scale-[0.98]"
+                >
+                  Speak with our recruitment consultant for a tailored compensation assessment
+                </a>
               </div>
           </div>
         )}
