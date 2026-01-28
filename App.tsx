@@ -490,7 +490,7 @@ const App: React.FC = () => {
                 </div>
                 
                 <a 
-                  href="#contact" 
+                  href="https://salesprofit.in/tools/sales-compensation-benchmark/#contact" 
                   className="block w-full text-center bg-[#32AF6F] text-white py-4 px-6 rounded-xl font-bold text-lg hover:opacity-95 transition-all shadow-md hover:shadow-lg transform active:scale-[0.98]"
                 >
                   Speak with our recruitment consultant for a tailored compensation assessment
